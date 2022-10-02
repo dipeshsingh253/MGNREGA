@@ -12,7 +12,7 @@ public interface GPMfunctions {
 	public void employeeDetails(int eid);
 	
 	
-	public void assignProjecttoEmployee(int poj_id, int emp_id);
+	public void assignProjecttoEmployee(int... args);
 	
 	
 	public void dayAndWagesOfEmployee();

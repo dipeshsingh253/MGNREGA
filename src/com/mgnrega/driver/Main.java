@@ -211,14 +211,22 @@ public class Main {
 			case 3: {
 				final int eid;
 				final int proj_id;
+				final int wage;
+				final int workDays;
 
 				System.out.println("Enter Employee Id :");
 				eid = scanner.nextInt();
 
 				System.out.println("Enter Project Id :");
 				proj_id = scanner.nextInt();
+				
+				System.out.println("Enter Wage Per Day for Employee :");
+				wage = scanner.nextInt();
+				
+				System.out.println("Enter Workdays for Employee :");
+				workDays = scanner.nextInt();
 
-				member.assignProjecttoEmployee(proj_id, eid);
+				member.assignProjecttoEmployee(proj_id,eid,wage,workDays);
 
 				break;
 			}
@@ -248,7 +256,7 @@ public class Main {
 //        System.out.print("\033[H\033[2J");  
 //        System.out.flush();  
 //    } 
-//	
+	
 	public void askForLoginDetails(int choice) {
 
 		// clearScreen();

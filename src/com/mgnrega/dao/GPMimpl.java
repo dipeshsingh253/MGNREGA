@@ -122,15 +122,22 @@ public class GPMimpl implements GPMfunctions {
 	}
 
 	@Override
-	public void assignProjecttoEmployee(int project_id, int eid) {
-
+	public void assignProjecttoEmployee(int... args) {
+		
+		int project_id = args[0];
+		int eid = args[1];
+		int wage = args[2];
+		int workDays = args[3];
+		
 		try (Connection connection = DButility.provideConnection()) {
 
-			PreparedStatement ps = connection.prepareStatement("update Employees set proj_id = ? where emp_id = ?");
+			PreparedStatement ps = connection.prepareStatement("update Employees set proj_id = ?, wage_perday = ?, work_days = ? where emp_id = ?");
 
 			ps.setInt(1, project_id);
-			ps.setInt(2, eid);
-
+			ps.setInt(2, wage);
+			ps.setInt(3, workDays);
+			ps.setInt(4, eid);
+			
 			int x = ps.executeUpdate();
 
 			if (x > 0) {

@@ -43,11 +43,13 @@ public class BDOimpl implements BDOfunctions {
 			}
 
 		} catch (SQLException e) {
+			
 			System.out.println();
 			System.out.println("Error Occured");
 			System.out.println();
 
 			System.out.println(e.getMessage());
+			
 		}
 
 		return bdo;
