@@ -51,7 +51,8 @@ public class BDOimpl implements BDOfunctions {
 			System.out.println(e.getMessage());
 			
 		}
-
+		
+		
 		return bdo;
 	}
 
@@ -230,7 +231,7 @@ public class BDOimpl implements BDOfunctions {
 
 			if (!rs.next()) {
 				throw new EmployeeException(
-						"There is no working Employee working the Project related to this Project Id");
+						"There is no Employee working on the Project related to this Project Id");
 			} else {
 
 				do {

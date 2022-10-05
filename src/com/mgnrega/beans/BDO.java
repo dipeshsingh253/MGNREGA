@@ -68,6 +68,8 @@ public class BDO extends BDOimpl{
 	
 	
 	public void printDetails() {
+	
+		
 		BDO bdo = this;
 		
 		System.out.println("================================================");

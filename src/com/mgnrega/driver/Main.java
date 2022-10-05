@@ -1,7 +1,6 @@
 package com.mgnrega.driver;
 
 import java.util.Scanner;
-
 import com.mgnrega.beans.BDO;
 import com.mgnrega.beans.Employee;
 import com.mgnrega.beans.GPM;
@@ -28,8 +27,17 @@ public class Main {
 		// shivay220
 
 		bdOfficer = bdOfficer.bdoOfficerlogin(username, password);
-		bdOfficer.printDetails();
 
+		if (bdOfficer == null) {
+
+			System.out.println("Try Again with Right username and password");
+
+			Main.main(null);
+
+			return;
+		}
+
+		bdOfficer.printDetails();
 		int choice = 0;
 
 		while (choice < 7) {
@@ -160,6 +168,16 @@ public class Main {
 		GPM member = new GPM();
 
 		member = member.loginGpm(username, password);
+
+		if (member == null) {
+
+			System.out.println("Try Again with Right username and Password");
+
+			Main.main(null);
+
+			return;
+		}
+
 		member.printDetails();
 
 		int choice = 0;
@@ -172,12 +190,6 @@ public class Main {
 			switch (choice) {
 			case 1: {
 
-//				final int id;
-//				final int proj_id;
-//				final String name;
-//				final int workingDays;
-//				final int wage;
-//				final String email;
 				final Employee employee = new Employee();
 
 				System.out.println("Enter Employee Id :");
@@ -219,14 +231,14 @@ public class Main {
 
 				System.out.println("Enter Project Id :");
 				proj_id = scanner.nextInt();
-				
+
 				System.out.println("Enter Wage Per Day for Employee :");
 				wage = scanner.nextInt();
-				
+
 				System.out.println("Enter Workdays for Employee :");
 				workDays = scanner.nextInt();
 
-				member.assignProjecttoEmployee(proj_id,eid,wage,workDays);
+				member.assignProjecttoEmployee(proj_id, eid, wage, workDays);
 
 				break;
 			}
@@ -256,7 +268,7 @@ public class Main {
 //        System.out.print("\033[H\033[2J");  
 //        System.out.flush();  
 //    } 
-	
+
 	public void askForLoginDetails(int choice) {
 
 		// clearScreen();
