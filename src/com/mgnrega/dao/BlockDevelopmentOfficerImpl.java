@@ -4,21 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.mgnrega.beans.BDO;
+import com.mgnrega.beans.BlockDevelopmentOfficer;
 import com.mgnrega.beans.Employee;
-import com.mgnrega.beans.GPM;
+import com.mgnrega.beans.GramPanchayatMember;
 import com.mgnrega.beans.Project;
 import com.mgnrega.exceptions.EmployeeException;
-import com.mgnrega.exceptions.GPMException;
+import com.mgnrega.exceptions.GramPanchayatMemberException;
 import com.mgnrega.exceptions.ProjectException;
 import com.mgnrega.utility.DButility;
 
-public class BDOimpl implements BDOfunctions {
+public class BlockDevelopmentOfficerImpl implements BlockDevelopmentOfficerFunction {
 
 	@Override
-	public BDO bdoOfficerlogin(String username, String password) {
+	public BlockDevelopmentOfficer bdoOfficerlogin(String username, String password) {
 
-		BDO bdo = null;
+		BlockDevelopmentOfficer bdo = null;
 
 		try (Connection connection = DButility.provideConnection()) {
 
@@ -35,7 +35,7 @@ public class BDOimpl implements BDOfunctions {
 				String name = rs.getString("name");
 				String email = rs.getString("email");
 
-				bdo = new BDO(id, name, email, username, password);
+				bdo = new BlockDevelopmentOfficer(id, name, email, username, password);
 
 				System.out.println("login successfull...");
 			} else {
@@ -43,16 +43,11 @@ public class BDOimpl implements BDOfunctions {
 			}
 
 		} catch (SQLException e) {
-			
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
 
 			System.out.println(e.getMessage());
-			
+
 		}
-		
-		
+
 		return bdo;
 	}
 
@@ -72,10 +67,6 @@ public class BDOimpl implements BDOfunctions {
 			}
 
 		} catch (Exception e) {
-
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
 
 			System.out.println(e.getMessage());
 
@@ -111,17 +102,13 @@ public class BDOimpl implements BDOfunctions {
 
 		} catch (Exception e) {
 
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
-
 			System.out.println(e.getMessage());
 		}
 
 	}
 
 	@Override
-	public void createGPMmember(GPM gpm) {
+	public void createGPMmember(GramPanchayatMember gpm) {
 
 		try (Connection connection = DButility.provideConnection()) {
 			PreparedStatement ps = connection
@@ -132,7 +119,6 @@ public class BDOimpl implements BDOfunctions {
 			ps.setString(3, gpm.getEmail());
 			ps.setString(4, gpm.getUsername());
 			ps.setString(5, gpm.getPassword());
-			// ps.setInt(6, gpm.getProj_id());
 
 			int x = ps.executeUpdate();
 
@@ -141,11 +127,6 @@ public class BDOimpl implements BDOfunctions {
 			}
 
 		} catch (Exception e) {
-
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
-
 			System.out.println(e.getMessage());
 		}
 
@@ -161,7 +142,7 @@ public class BDOimpl implements BDOfunctions {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				throw new GPMException("No Gram Panchayat Members Availible");
+				throw new GramPanchayatMemberException("No Gram Panchayat Members Availible");
 			} else {
 
 				do {
@@ -173,7 +154,7 @@ public class BDOimpl implements BDOfunctions {
 					String username = rs.getString("username");
 					String password = rs.getString("password");
 
-					GPM gpm = new GPM(id, name, email, username, password, proj_id);
+					GramPanchayatMember gpm = new GramPanchayatMember(id, name, email, username, password, proj_id);
 
 					gpm.printDetails();
 
@@ -182,11 +163,6 @@ public class BDOimpl implements BDOfunctions {
 			}
 
 		} catch (Exception e) {
-
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
-
 			System.out.println(e.getMessage());
 		}
 
@@ -209,10 +185,6 @@ public class BDOimpl implements BDOfunctions {
 
 		} catch (Exception e) {
 
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
-
 			System.out.println(e.getMessage());
 
 		}
@@ -230,8 +202,7 @@ public class BDOimpl implements BDOfunctions {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				throw new EmployeeException(
-						"There is no Employee working on the Project related to this Project Id");
+				throw new EmployeeException("There is no Employee working on the Project related to this Project Id");
 			} else {
 
 				do {
@@ -251,10 +222,6 @@ public class BDOimpl implements BDOfunctions {
 			}
 
 		} catch (Exception e) {
-
-			System.out.println();
-			System.out.println("Error Occured");
-			System.out.println();
 
 			System.out.println(e.getMessage());
 		}

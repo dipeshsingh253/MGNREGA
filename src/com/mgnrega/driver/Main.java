@@ -1,9 +1,9 @@
 package com.mgnrega.driver;
 
 import java.util.Scanner;
-import com.mgnrega.beans.BDO;
+import com.mgnrega.beans.BlockDevelopmentOfficer;
 import com.mgnrega.beans.Employee;
-import com.mgnrega.beans.GPM;
+import com.mgnrega.beans.GramPanchayatMember;
 import com.mgnrega.beans.Project;
 
 public class Main {
@@ -23,7 +23,7 @@ public class Main {
 
 	public void bdoActions(String username, String password) {
 
-		BDO bdOfficer = new BDO();
+		BlockDevelopmentOfficer bdOfficer = new BlockDevelopmentOfficer();
 		// shivay220
 
 		bdOfficer = bdOfficer.bdoOfficerlogin(username, password);
@@ -97,7 +97,7 @@ public class Main {
 //				System.out.println("Enter Proj_id"); 
 //				proj_id = scanner.nextInt();
 
-				bdOfficer.createGPMmember(new GPM(id, name, email, userName, passWord, 0));
+				bdOfficer.createGPMmember(new GramPanchayatMember(id, name, email, userName, passWord, 0));
 
 				break;
 			}
@@ -165,7 +165,7 @@ public class Main {
 
 	public void gpmActions(String username, String password) {
 
-		GPM member = new GPM();
+		GramPanchayatMember member = new GramPanchayatMember();
 
 		member = member.loginGpm(username, password);
 
@@ -264,14 +264,8 @@ public class Main {
 
 	}
 
-//    public static void clearScreen() {  
-//        System.out.print("\033[H\033[2J");  
-//        System.out.flush();  
-//    } 
-
 	public void askForLoginDetails(int choice) {
 
-		// clearScreen();
 		scanner.nextLine();
 
 		System.out.println("Enter Username :");
@@ -300,7 +294,6 @@ public class Main {
 
 		int choice = 0;
 
-		// while(choice<3) {
 		main.printOptions();
 
 		choice = scanner.nextInt();
@@ -322,8 +315,6 @@ public class Main {
 		}
 
 		}
-
-		// }
 
 		scanner.close();
 
